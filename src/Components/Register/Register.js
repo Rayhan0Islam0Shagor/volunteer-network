@@ -1,34 +1,36 @@
-import { Link, useParams } from 'react-router-dom';
-import React, { useState } from 'react';
+import { Link, useHistory, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import logo from '../../logos/Group 1329.png'
 import { useContext } from 'react';
 import { UserContext } from '../../App';
-import tasks from '../FakeData/FakeData'
 
 
 const Register = () => {
-
-    const { id } = useParams();
-    const library = tasks.find(task => task.id === Number(id));
-
     const { userInfo } = useContext(UserContext);
     const [loggedInUser, setLoggedInUser] = userInfo;
+
+    const history = useHistory();
+
+    const { id } = useParams();
+
+    const [eventId, setEventId] = useState()
+
+    useEffect(() => {
+        loadData()
+    }, [id])
+
+    const loadData = async () => {
+        await fetch('http://localhost:5000/register/' + id)
+            .then(res => res.json())
+            .then(data => setEventId(data))
+    }
+
+    const { title, imgURL } = eventId ? eventId[0] : []
 
     const [input, setInput] = useState({
         date: '',
         description: ''
     })
-
-    const handleSubmit = (e) => {
-        console.log('form submitted');
-        const userAllInfo = { ...loggedInUser }
-        userAllInfo.date = input.date;
-        userAllInfo.description = input.description;
-        userAllInfo.category = library.title;
-
-        setLoggedInUser(userAllInfo);
-        e.preventDefault();
-    }
 
     const handleBlur = (e) => {
         const inputValue = { ...input }
@@ -41,17 +43,44 @@ const Register = () => {
         setInput(inputValue);
     }
 
-    console.log(loggedInUser);
+    const handleSubmit = (e) => {
+        const userAllInfo = { ...loggedInUser }
+        userAllInfo.date = input.date;
+        userAllInfo.description = input.description;
+        userAllInfo.title = title;
+        userAllInfo.taskImg = imgURL;
+
+        setLoggedInUser(userAllInfo);
+
+        fetch('http://localhost:5000/addVolunteer', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userAllInfo)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data) {
+                    history.push('/socialWork')
+                }
+            })
+
+        e.preventDefault();
+    }
+
+
+
     return (
-        <div>
+        <div style={{ backgroundColor: "#e0ece4" }}>
             <div className='pb-5'>
                 <div className="text-center pt-4">
                     <Link to='/home'>
-                        <img className="ml-4" height="50px" width="200px" src={logo} alt="" />
+                        <img height="50px" width="200px" src={logo} alt="" />
                     </Link>
                 </div>
-                <div style={{ height: "500px", border: '1px solid gray', borderRadius: "10px", padding: "50px" }}
-                    className="container text-center align-items-center w-50 mt-5"
+                <div style={{ border: '1px solid gray', borderRadius: "10px", padding: "50px" }}
+                    className="container bg-light text-center align-items-center w-50 mt-5"
                 >
                     <form onSubmit={handleSubmit}>
                         <input className="form-control font-weight-bold" type="text" value={loggedInUser.name} placeholder="Full Name" />
@@ -62,7 +91,7 @@ const Register = () => {
                         <br />
                         <textarea onBlur={handleBlur} className="form-control" type="text" placeholder="Description" name="description" ></textarea>
                         <br />
-                        <input className="form-control font-weight-bold" type="text" value={library.title} placeholder="Organize books at the library" />
+                        <input className="form-control font-weight-bold" value={title} type="text" placeholder="Organize books at the library" />
                         <br />
                         <br />
                         <input type="submit" name="submit" value="Registration" className="btn btn-primary w-100" />

@@ -12,7 +12,7 @@ const Header = () => {
             <Navbar bg="transparent" variant="light">
                 <Navbar.Brand>
                     <Link to='/home'>
-                        <img className="ml-4" height="40px" width="200px" src={logo} alt="" />
+                        <img className="ml-4" width="200px" src={logo} alt="" />
                     </Link>
                 </Navbar.Brand>
                 <Nav className="ml-auto justify-content-between font-weight-bold">
@@ -20,16 +20,24 @@ const Header = () => {
                     <Nav.Link><NavLink to='/donation'>Donation</NavLink></Nav.Link>
                     <Nav.Link><NavLink to='/events'>Events</NavLink></Nav.Link>
                     <Nav.Link className="mr-5" ><NavLink to='/blogs'>Blogs</NavLink></Nav.Link>
-                    <Nav.Link className="mr-5" >{loggedInUser.name}</Nav.Link>
                 </Nav>
-                <Form inline>
-                    <Link to="/register">
-                        <Button className="mr-2 pl-4 pr-4" variant="primary">Register</Button>
-                    </Link>
-                    <Button className="mr-5 pl-4 pr-4" variant="secondary">Admin</Button>
-                </Form>
+                {
+                    loggedInUser.email
+                        ?
+                        <div style={{ backgroundColor: "#b2ebf2" }} className="rounded-pill">
+                            <Nav.Link className="mr-5 font-weight-bold text-dark" ><img height="30px" style={{ borderRadius: "50%", marginRight: "15px" }} width="30px" src={loggedInUser.photo} alt="" /> {loggedInUser.name}
+                            </Nav.Link>
+                        </div>
+                        :
+                        <Form inline>
+                            <Link to="/socialWork">
+                                <Button className="mr-2 pl-4 pr-4" variant="primary">Register</Button>
+                            </Link>
+                            <Button className="mr-5 pl-4 pr-4" variant="secondary">Admin</Button>
+                        </Form>
+                }
             </Navbar>
-        </div>
+        </div >
     );
 };
 

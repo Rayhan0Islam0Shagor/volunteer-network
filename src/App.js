@@ -6,6 +6,10 @@ import NotFound from './Components/NotFound/NotFound';
 import Header from './Components/Header/Header';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 import Register from './Components/Register/Register';
+import SocialWork from './Components/SocialWork/SocialWork';
+import Donation from './Components/Donation/Donation';
+import Blogs from './Components/Blogs/Blogs';
+
 
 export const UserContext = createContext();
 
@@ -35,7 +39,7 @@ function App() {
             </Route>
 
             <Route path="/donation">
-              <Home />
+              <Donation />
             </Route>
 
             <Route path="/events">
@@ -43,12 +47,12 @@ function App() {
             </Route>
 
             <Route path="/blogs">
-              <Home />
+              <Blogs />
             </Route>
 
-            {/* <Route path="/register/:id">
-              <Register />
-            </Route> */}
+            <PrivateRoute path="/socialWork">
+              <SocialWork />
+            </PrivateRoute>
 
             <PrivateRoute path="/register/:id">
               <Register />
