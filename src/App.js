@@ -42,9 +42,9 @@ function App() {
               <Donation />
             </Route>
 
-            <Route path="/events">
-              <Home />
-            </Route>
+            <PrivateRoute path="/events">
+              <SocialWork />
+            </PrivateRoute>
 
             <Route path="/blogs">
               <Blogs />

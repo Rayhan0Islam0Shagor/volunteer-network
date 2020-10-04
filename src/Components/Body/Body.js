@@ -6,15 +6,16 @@ import { useState } from 'react';
 const Body = () => {
     const [event, setEvent] = useState([]);
 
-    const handleAddEvent = () => {
-        fetch('http://localhost:5000/addEvent', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(event)
-        })
-    }
+    // onClick={handleAddEvent}
+    // const handleAddEvent = () => {
+    //     fetch('http://localhost:5000/addEvent', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify(event)
+    //     })
+    // }
 
     useEffect(() => {
         fetch('http://localhost:5000/events')
@@ -29,7 +30,7 @@ const Body = () => {
                     <h1>I GROW BY HELPING PEOPLE IN NEED.</h1> <br />
                     <div style={{ marginLeft: "120px" }} className="d-flex container">
                         <input className="form-control w-75" type="text" />
-                        <button onClick={handleAddEvent} className="btn btn-success">SEARCH</button>
+                        <button className="btn btn-success">SEARCH</button>
                     </div>
                 </div>
                 <div className="row">

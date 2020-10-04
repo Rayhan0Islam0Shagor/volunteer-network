@@ -18,7 +18,7 @@ const Header = () => {
                 <Nav className="ml-auto justify-content-between font-weight-bold">
                     <Nav.Link><NavLink to='/home'>Home</NavLink></Nav.Link>
                     <Nav.Link><NavLink to='/donation'>Donation</NavLink></Nav.Link>
-                    <Nav.Link><NavLink to='/events'>Events</NavLink></Nav.Link>
+                    <Nav.Link><NavLink to='/socialWork'>Events</NavLink></Nav.Link>
                     <Nav.Link className="mr-5" ><NavLink to='/blogs'>Blogs</NavLink></Nav.Link>
                 </Nav>
                 {

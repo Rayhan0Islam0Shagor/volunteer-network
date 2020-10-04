@@ -80,8 +80,8 @@ const Register = () => {
                     </Link>
                 </div>
                 <div style={{ border: '1px solid gray', borderRadius: "10px", padding: "50px" }}
-                    className="container bg-light text-center align-items-center w-50 mt-5"
-                >
+                    className="container bg-light text-center align-items-center w-50 mt-5">
+                    <h2 className="pb-4 font-weight-bold">Register as a Volunteer</h2>
                     <form onSubmit={handleSubmit}>
                         <input className="form-control font-weight-bold" type="text" value={loggedInUser.name} placeholder="Full Name" />
                         <br />
