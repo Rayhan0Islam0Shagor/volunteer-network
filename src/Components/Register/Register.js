@@ -8,12 +8,9 @@ import { UserContext } from '../../App';
 const Register = () => {
     const { userInfo } = useContext(UserContext);
     const [loggedInUser, setLoggedInUser] = userInfo;
-
     const history = useHistory();
-
     const { id } = useParams();
-
-    const [eventId, setEventId] = useState()
+    const [eventId, setEventId] = useState();
 
     useEffect(() => {
         loadData()

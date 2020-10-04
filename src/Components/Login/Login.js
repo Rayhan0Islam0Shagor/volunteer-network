@@ -54,9 +54,13 @@ const Login = () => {
                         <h2 className="font-weight-bold mb-3">Login With</h2>
                         <button onClick={handleGoogleSignIn} style={{ background: "#ebecf1" }} className="btn rounded-pill w-100">
                             <img className="mr-2" height="20px" width="20px" src={googleImg} alt="" />
-                    Login with Google
-                    </button>
-                        <p className="mt-4">Don't have an account? <button className="btn" onClick={handleGoogleSignIn}><Link to="/login"> Create Account</Link></button></p>
+                            Login with Google
+                        </button>
+                        <p className="mt-4">Don't have an account?
+                            <button className="btn" onClick={handleGoogleSignIn}>
+                                <Link to="/login"> Create Account</Link>
+                            </button>
+                        </p>
                     </div>
                 </div>
             </div>

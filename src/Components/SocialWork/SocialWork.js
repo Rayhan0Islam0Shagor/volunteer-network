@@ -2,9 +2,12 @@ import React from 'react';
 import { useContext } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { Redirect } from 'react-router-dom';
 import { UserContext } from '../../App';
 import Header from '../Header/Header';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure()
 
 const SocialWork = () => {
 
@@ -13,9 +16,13 @@ const SocialWork = () => {
     const [loggedInUser, setLoggedInUser] = userInfo;
 
     useEffect(() => {
-        fetch('http://localhost:5000/existingUser?userEmail=' + userInfo.email)
+        fetch('http://localhost:5000/existingUser?email=' + loggedInUser.email)
             .then(res => res.json())
-            .then(data => setExistingUser(data))
+            .then(data => {
+                setExistingUser(data)
+                console.log(data)
+            })
+
     }, [existingUser])
 
     function cancelEvent(id) {
@@ -25,7 +32,7 @@ const SocialWork = () => {
             .then(res => res.json())
             .then(result => {
                 if (result) {
-                    return <Redirect to='/socialWork' />
+                    toast.info('Event cancel successfully')
                 }
             })
     }
@@ -48,7 +55,11 @@ const SocialWork = () => {
                                                 <h4 className="font-weight-bold card-title">{user.title}</h4>
                                                 <b className="card-text">{user.date}</b> <br />
                                                 <div className="mt-5">
-                                                    <button onClick={() => cancelEvent(`${user._id}`)} style={{ backgroundColor: '#dbdbdb' }} className="btn pl-4 pr-4">Cancel</button>
+                                                    <button onClick={() => cancelEvent(`${user._id}`)}
+                                                        style={{ backgroundColor: '#dbdbdb' }}
+                                                        className="btn pl-4 pr-4">
+                                                        Cancel
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>

@@ -1,0 +1,14 @@
+.custom-link{
+    color:#020d1d;
+    font-size: 18px;
+    margin-left: 15px;
+}
+
+.custom-link:hover{
+    color: #07689f;
+    text-decoration: none;
+}
+
+.active{
+    color: #07689f;
+}

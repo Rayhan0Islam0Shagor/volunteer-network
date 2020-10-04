@@ -1,0 +1,14 @@
+.custom-menu{
+    color: black;
+    font-size: 18px;
+    margin-left: 15px;
+}
+
+.custom-menu:hover{
+    color: tomato;
+    text-decoration: none;
+}
+
+.tomato{
+    color: tomato;
+}

@@ -9,6 +9,8 @@ import Register from './Components/Register/Register';
 import SocialWork from './Components/SocialWork/SocialWork';
 import Donation from './Components/Donation/Donation';
 import Blogs from './Components/Blogs/Blogs';
+import Admin from './Components/Admin/Admin';
+import AddEvent from './Components/AddEvent/AddEvent';
 
 
 export const UserContext = createContext();
@@ -26,6 +28,7 @@ function App() {
       <UserContext.Provider value={{ userInfo: [loggedInUser, setLoggedInUser] }}>
         <Router>
           <Switch>
+
             <Route exact path="/">
               <Home />
             </Route>
@@ -57,6 +60,14 @@ function App() {
             <PrivateRoute path="/register/:id">
               <Register />
             </PrivateRoute>
+
+            <Route path="/admin">
+              <Admin />
+            </Route>
+
+            <Route path="/addEvent">
+              <AddEvent />
+            </Route>
 
             <Route path="*">
               <NotFound />

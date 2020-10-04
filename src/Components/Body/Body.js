@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import './Body.css'
 
 const Body = () => {
     const [event, setEvent] = useState([]);
@@ -38,8 +39,10 @@ const Body = () => {
                         event.map(task =>
                             <div key={Math.random()} className="col-md-3 text-center">
                                 <Link style={{ textDecoration: "none" }} to={`/register/${task.id}`}>
-                                    <div className="card p-3 m-1" style={{ width: '18rem', height: "430px", width: "288px" }}>
-                                        <img height="300px" width="250px" src={task.imgURL} className="card-img-top" alt="..." />
+                                    <div className="card p-2" style={{ width: '100%', height: "380px", marginTop: "20px" }}>
+                                        <div style={{ overflow: "hidden" }}>
+                                            <img className="card-img-top" src={task.imgURL} alt="..." />
+                                        </div>
                                         <div className="card-body bg-primary text-light rounded">
                                             <h4 className="card-text">{task.title}</h4>
                                         </div>

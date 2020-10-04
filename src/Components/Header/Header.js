@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import { Button, Form, Nav, Navbar } from 'react-bootstrap';
 import { Link, NavLink } from 'react-router-dom';
 import { UserContext } from '../../App';
-import logo from '../../logos/Group 1329.png'
+import logo from '../../logos/Group 1329.png';
+import '../Home/Home.css'
 
 const Header = () => {
     const { userInfo } = useContext(UserContext);
@@ -16,16 +17,20 @@ const Header = () => {
                     </Link>
                 </Navbar.Brand>
                 <Nav className="ml-auto justify-content-between font-weight-bold">
-                    <Nav.Link><NavLink to='/home'>Home</NavLink></Nav.Link>
-                    <Nav.Link><NavLink to='/donation'>Donation</NavLink></Nav.Link>
-                    <Nav.Link><NavLink to='/socialWork'>Events</NavLink></Nav.Link>
-                    <Nav.Link className="mr-5" ><NavLink to='/blogs'>Blogs</NavLink></Nav.Link>
+                    <NavLink activeClassName="tomato" className="custom-menu" to='/home'>Home</NavLink>
+                    <NavLink activeClassName="tomato" className="custom-menu" to='/donation'>Donation</NavLink>
+                    <NavLink activeClassName="tomato" className="custom-menu" to='/socialWork'>Events</NavLink>
+                    <NavLink activeClassName="tomato" className="mr-5 custom-menu" to='/blogs'>Blogs</NavLink>
                 </Nav>
                 {
                     loggedInUser.email
                         ?
                         <div style={{ backgroundColor: "#b2ebf2" }} className="rounded-pill">
-                            <Nav.Link className="mr-5 font-weight-bold text-dark" ><img height="30px" style={{ borderRadius: "50%", marginRight: "15px" }} width="30px" src={loggedInUser.photo} alt="" /> {loggedInUser.name}
+                            <Nav.Link className="mr-5 font-weight-bold text-dark" >
+                                <img height="30px"
+                                    style={{ borderRadius: "50%", marginRight: "15px" }} width="30px"
+                                    src={loggedInUser.photo} alt="" />
+                                {loggedInUser.name}
                             </Nav.Link>
                         </div>
                         :
@@ -33,7 +38,9 @@ const Header = () => {
                             <Link to="/socialWork">
                                 <Button className="mr-2 pl-4 pr-4" variant="primary">Register</Button>
                             </Link>
-                            <Button className="mr-5 pl-4 pr-4" variant="secondary">Admin</Button>
+                            <Link to='/admin'>
+                                <Button className="mr-5 pl-4 pr-4" variant="secondary">Admin</Button>
+                            </Link>
                         </Form>
                 }
             </Navbar>
