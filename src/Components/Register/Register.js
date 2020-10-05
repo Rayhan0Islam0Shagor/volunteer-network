@@ -17,7 +17,7 @@ const Register = () => {
     }, [id])
 
     const loadData = async () => {
-        await fetch('http://localhost:5000/register/' + id)
+        await fetch('https://calm-wildwood-74392.herokuapp.com/register/' + id)
             .then(res => res.json())
             .then(data => setEventId(data))
     }
@@ -49,7 +49,7 @@ const Register = () => {
 
         setLoggedInUser(userAllInfo);
 
-        fetch('http://localhost:5000/addVolunteer', {
+        fetch('https://calm-wildwood-74392.herokuapp.com/addVolunteer', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

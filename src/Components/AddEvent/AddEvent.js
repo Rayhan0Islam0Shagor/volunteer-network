@@ -10,7 +10,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 toast.configure();
+
 const AddEvent = () => {
+
     const [inputValue, setInputValue] = useState({
         title: '',
         description: '',
@@ -35,7 +37,7 @@ const AddEvent = () => {
     }
 
     const newAddSubmit = (e) => {
-        fetch('http://localhost:5000/addNewEvent', {
+        fetch('https://calm-wildwood-74392.herokuapp.com/addNewEvent', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -107,7 +109,7 @@ const AddEvent = () => {
                                     </div>
                                     <div>
                                         <label className="font-weight-bold text-primary" htmlFor="">Banner</label> <br />
-                                        <input className="form-control" type="file" />
+                                        <input className="btn" type="file" />
                                     </div>
                                     <input value="Submit" className="btn-primary btn mt-3" type="submit" />
                                 </div>

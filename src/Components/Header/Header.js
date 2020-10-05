@@ -12,9 +12,9 @@ const Header = () => {
         <div>
             <Navbar bg="transparent" variant="light">
                 <Navbar.Brand>
-                    <Link to='/home'>
+                    <NavLink to='/home'>
                         <img className="ml-4" width="200px" src={logo} alt="" />
-                    </Link>
+                    </NavLink>
                 </Navbar.Brand>
                 <Nav className="ml-auto justify-content-between font-weight-bold">
                     <NavLink activeClassName="tomato" className="custom-menu" to='/home'>Home</NavLink>

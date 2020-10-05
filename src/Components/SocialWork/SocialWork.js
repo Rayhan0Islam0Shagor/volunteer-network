@@ -16,17 +16,16 @@ const SocialWork = () => {
     const [loggedInUser, setLoggedInUser] = userInfo;
 
     useEffect(() => {
-        fetch('http://localhost:5000/existingUser?email=' + loggedInUser.email)
+        fetch('https://calm-wildwood-74392.herokuapp.com/existingUser?email=' + loggedInUser.email)
             .then(res => res.json())
             .then(data => {
                 setExistingUser(data)
-                console.log(data)
             })
 
     }, [existingUser])
 
     function cancelEvent(id) {
-        fetch(`http://localhost:5000/delete/${id}`, {
+        fetch(`https://calm-wildwood-74392.herokuapp.com/delete/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -54,7 +53,7 @@ const SocialWork = () => {
                                             <div className="card-body">
                                                 <h4 className="font-weight-bold card-title">{user.title}</h4>
                                                 <b className="card-text">{user.date}</b> <br />
-                                                <div className="mt-5">
+                                                <div className="mt-5 d-flex justify-content-end">
                                                     <button onClick={() => cancelEvent(`${user._id}`)}
                                                         style={{ backgroundColor: '#dbdbdb' }}
                                                         className="btn pl-4 pr-4">

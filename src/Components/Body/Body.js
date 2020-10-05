@@ -9,17 +9,17 @@ const Body = () => {
 
     // onClick={handleAddEvent}
     // const handleAddEvent = () => {
-    //     fetch('http://localhost:5000/addEvent', {
+    //     fetch('https://calm-wildwood-74392.herokuapp.com/addEvent', {
     //         method: 'POST',
     //         headers: {
     //             'Content-Type': 'application/json'
     //         },
-    //         body: JSON.stringify(event)
+    //         body: JSON.stringify(tasks)
     //     })
     // }
 
     useEffect(() => {
-        fetch('http://localhost:5000/events')
+        fetch('https://calm-wildwood-74392.herokuapp.com/events')
             .then(res => res.json())
             .then(data => setEvent(data))
     }, [])

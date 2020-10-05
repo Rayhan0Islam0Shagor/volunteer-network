@@ -5,24 +5,31 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faUserFriends, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { useEffect } from 'react';
 import { useState } from 'react';
-import './Admin.css'
+import './Admin.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+
+toast.configure();
 
 const Admin = () => {
     const [userAllData, setUserAllData] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/allVolunteerData')
+        fetch('https://calm-wildwood-74392.herokuapp.com/allVolunteerData')
             .then(res => res.json())
             .then(data => setUserAllData(data))
     }, [userAllData])
 
     const deleteUser = (id) => {
-        fetch(`http://localhost:5000/delete/${id}`, {
+        fetch(`https://calm-wildwood-74392.herokuapp.com/delete/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => {
+                console.log(data)
+                toast.info('Event Added successfully')
+            })
     }
 
     return (
